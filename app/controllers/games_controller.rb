@@ -8,7 +8,7 @@ class GamesController < ApplicationController
   def new
     # generate random grid of 10 letters
     $letters = generate_grid
-    @score_count = session[:score_count]
+    @current_score = current_score
   end
 
   def score
@@ -20,11 +20,13 @@ class GamesController < ApplicationController
         increment_score_count(@word)
       else
         @results = "Sorry but #{@word.upcase} does not seem to be a valid English word..."
+        @current_score = "Final Score: #{current_score}"
         session[:score_count] = 0
       end
     else
       separate_letters = $letters.join(', ')
       @results = "Sorry but #{@word.upcase} can't be built out of #{separate_letters}"
+      @current_score = "Final Score: #{current_score}"
       session[:score_count] = 0
     end
   end
@@ -51,6 +53,10 @@ class GamesController < ApplicationController
 
   def increment_score_count(word)
     session[:score_count] += word.length * word.length
+  end
+
+  def current_score
+    session[:score_count]
   end
 
 end
