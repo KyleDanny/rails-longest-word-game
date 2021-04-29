@@ -1,18 +1,29 @@
-<h1>LONGEST WORD GAME</h1>
-<h2>New game</h2>
+<div class="container">
 
-<ul>
-  <% $letters.each do |letter| %>
-    <li><%= letter.capitalize %></li>
-  <% end %>
-</ul>
+  <div class="item">
+    <h1>LONGEST WORD GAME</h1>
+    <h2>New game</h2>
+  </div>
 
-<label>What is the longest word you can find?</label>
+  <div class="letters-list item">
+    <ul class="list-inline">
+      <% $letters.each do |letter| %>
+        <div class="letter-block"><li><%= letter.capitalize %></li></div>
+      <% end %>
+    </ul>
+  </div>
 
-<form action="score" method="POST">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <input type="text" name="word">
-  <input type="submit" value="Play">
-</form>
+  <div class="item">
+    <label class="btn-group btn-group-sm">What is the longest word you can find?</label>
+    <form action="score" method="POST" class="input-group input-group-sm mb-3">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input type="text" name="word" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      <input type="submit" value="Play" class="btn btn-primary">
+    </form>
+  </div>
 
-<h3>SCORE: <%= @current_score %></h3>
+  <div class="item">
+    <h3>SCORE: <%= @current_score %></h3>
+  </div>
+
+</div>
