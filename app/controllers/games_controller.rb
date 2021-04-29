@@ -19,13 +19,13 @@ class GamesController < ApplicationController
         increment_score_count(@word)
       else
         @results = "Sorry but #{@word.upcase} does not seem to be a valid English word..."
-        @current_score = "Final Score: #{current_score}"
+        @final_score = "Final Score: #{current_score}"
         session[:score_count] = 0
       end
     else
       separate_letters = $letters.join(', ')
       @results = "Sorry but #{@word.upcase} can't be built out of #{separate_letters}"
-      @current_score = "Final Score: #{current_score}"
+      @final_score = "Final Score: #{current_score}"
       session[:score_count] = 0
     end
   end
@@ -51,10 +51,10 @@ class GamesController < ApplicationController
   end
 
   def increment_score_count(word)
-    session[:score_count] += word.length * word.length
-    # word.upcase.each_char do |letter|
-      # session[:score_count] += SCORING[:letter]
-    end
+    # session[:score_count] += word.length * word.length
+    word.upcase.each_char do |letter|
+    session[:score_count] += SCORING[letter.to_sym]
+  end
   end
 
   def current_score
