@@ -64,9 +64,16 @@ li {
 }
 
 label {
-  color: white;
+  color: black;
+  font-weight: bold;
+  background-color: white;
 }
 
 .item2 a {
    text-decoration: none;
  }
+
+.item h3 {
+  background-color: white;
+  width: 130px;
+}

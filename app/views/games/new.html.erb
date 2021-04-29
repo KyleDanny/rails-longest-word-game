@@ -7,16 +7,17 @@
 
   <div class="letters-list item">
     <ul class="list-inline">
-      <% $letters.each do |letter| %>
+      <% @grid.each do |letter| %>
         <div class="letter-block"><li><%= letter.capitalize %></li></div>
       <% end %>
     </ul>
   </div>
 
   <div class="item">
-    <label class="btn-group btn-group-sm">What is the longest word you can find?</label>
+    <label>What is the longest word you can find?</label>
     <form action="score" method="POST" class="input-group input-group-sm mb-3">
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag :random_grid, @grid %>
       <input type="text" name="word" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
       <input type="submit" value="Play" class="btn btn-primary">
     </form>
